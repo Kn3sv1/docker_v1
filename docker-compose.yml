@@ -1,0 +1,28 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    volumes:
+    #  - C:/Users/r_satanovskyi/databases:/var/lib/mysql
+    #  - //c/Users/r_satanovskyi/databases:/var/lib/mysql
+    #   - dev6:/var/lib/mysql
+    #   - foo:/var/lib/mysql
+    #  - ./databases:/var/lib/mysql
+    #user: "1000:50"
+    volumes:
+      - sql-data:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+ sql-data:
